@@ -14,6 +14,12 @@ app.get('/characters', async (req, res) => {
     res.json(characters)
 });
 
+app.get('/characters/:id', async (req, res) => {
+    const { id } = req.params;
+    const { data: character } = await axios.get(BASE_URL + `/character/${id}`)
+    res.json(character)
+});
+
 const main = () => {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
